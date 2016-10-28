@@ -20,7 +20,7 @@ switch massageChair {
 case .free:
   print("The chair is currently free.")
 case .occupied(let person):
-  print("\(person.name) is enjoying an extremyle nice and comforting massage right now. Please don't disturb and wait until it's your turn!")
+  print("\(person.name) is enjoying an extremely nice and comforting massage right now. Please don't disturb and wait until it's your turn!")
 }
 
 /*:
@@ -42,4 +42,41 @@ case .occupied(let person):
  4. Write a function that takes a `Box` as an argument and returns a `String` indicating what that `Box` contains.
  5. Make the `Box` _generic_ so that it can contain an object of any type, not just `Thing`.
  */
+class Thing {
+    let name: String
+    
+    init(name: String){
+        self.name = name
+    }
+}
+
+enum Box {
+    case empty
+    case containsOneThing(Thing)
+}
+
+var emptyBox = Box.empty
+
+
+let soccerBall = Thing(name: "Soccer ball")
+var boxWithSoccerBall = Box.containsOneThing(soccerBall)
+
+let phone = Thing(name: "Phone")
+var boxWithPhone = Box.containsOneThing(phone)
+
+let chocolate = Thing(name: "Chocolate")
+var boxWithChocolate = Box.containsOneThing(chocolate)
+
+func containedItemIn(box: Box) -> String {
+    switch box{
+    case .empty:
+        return "The box is empty."
+    case .containsOneThing(let thing):
+        return "The box has a \(thing.name) in it. Sorry!"
+    }
+    
+}
+
+print(containedItemIn(box: boxWithPhone))
+print(containedItemIn(box: emptyBox))
 
